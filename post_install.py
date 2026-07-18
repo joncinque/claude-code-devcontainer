@@ -35,7 +35,7 @@ def setup_onboarding_bypass():
         )
         return
 
-    # When `CLAUDE_CONFIG_DIR` is set, as is done in `devcontainer.json`, `claude` unexpectedly 
+    # When `CLAUDE_CONFIG_DIR` is set, as is done in `devcontainer.json`, `claude` unexpectedly
     # looks for `.claude.json` in *that* folder, instead of in `~`, contradicting the documentation.
     #  See https://github.com/anthropics/claude-code/issues/3833#issuecomment-3694918874
     claude_json_dir = Path(os.environ.get("CLAUDE_CONFIG_DIR", Path.home()))
@@ -174,6 +174,8 @@ def fix_directory_ownership():
         Path.home() / ".claude",
         Path("/commandhistory"),
         Path.home() / ".config" / "gh",
+        Path.home() / ".ssh",
+        Path("/workspace"),
     ]
 
     for dir_path in dirs_to_fix:
